@@ -1,0 +1,17 @@
+#ifndef RESERVATIONS_H
+#define RESERVATIONS_H
+#include <iostream>
+using namespace std;
+
+class Reservations{
+    private:
+        int day = 0;
+    public:
+        Reservations();
+
+
+}
+
+
+
+#endif
