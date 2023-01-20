@@ -13,11 +13,11 @@ class Date {
 	public:
 		//constructors
 		Date();
-		Date(int year, int month, int day);
+		Date(int, int, int);
 		Date(const Date&);
 		
 		//setters
-		void setDay( int);
+		void setDay(int);
 		void setMonth(int);
 		void setYear(int);
 		void setDate(int, int, int);
@@ -28,11 +28,18 @@ class Date {
 		int getMonth();
 		int getYear();
 		string getMonthName();
+		string toString();
 		
 		//other
 		// advance this Date by 1 day
 		void incDate();
 		void print();
+		int monthToDays();
+		bool equals(Date&);
+		bool lessThan(Date&);
+		void addDays(int);
+		
+		
 	
 	private:
 		//functions

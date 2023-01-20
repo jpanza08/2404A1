@@ -52,6 +52,7 @@ string Date::getMonthName(){
 	string months[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	return months[month-1];
 }
+string Date::toString(){return this->getMonthName() + " " + to_string(this->getDay()) + ", " + to_string(this->getYear());}
 
 //other
 void Date::incDate(){
@@ -71,9 +72,8 @@ void Date::incDate(){
 }
 
 void Date::print(){
-	cout << getMonthName()<<" "<<day<<", "<<year;
+	cout<<this->toString();
 }
-
 
 int Date::getMaxDay(){
 	switch(getMonth()){
@@ -86,3 +86,38 @@ int Date::getMaxDay(){
 	}
 }
 
+int Date::monthToDays(){
+	int monthDays[12] = {0,31,59,90,120,151,181,212,243,273,303,334};
+	return monthDays[month-1] + day;
+	
+}
+
+bool Date::equals(Date& d){ return d.day == this->day && d.month == this->month && d.year == this->year;}
+
+bool Date::lessThan(Date& d){
+	if(d.year < this->year){
+		return false;
+	}else if(d.year > this->year){
+		return true;
+	}else{
+		if(d.month < this->month){
+			return false;
+		}else if(d.month > this->month){
+			return true;
+		}else{
+			if(d.day <= this->day){
+				return false;
+			}else if(d.day > this->day){
+				return true;
+			}
+		}
+	}
+	
+}
+
+void Date::addDays(int days){
+	for(int i = 0; i < days; ++i){
+		this->incDate();
+	}
+
+}
