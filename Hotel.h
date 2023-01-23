@@ -9,17 +9,21 @@ using namespace std;
     
     class Hotel{
         private:
-            Room *rooms[MAX_ROOMS]; //TODO: figure out what kind of array
+            Room *rooms[MAX_ROOMS]; 
             int size;
 
         public:
             //Constructor
             Hotel();
+            int findInsertion(Room&);
+            int findRoom(int roomNumber);
+            void shift(int);
+            bool containsRoom(int);
             bool addRoom(int, string, int, bool);
             bool deleteRoom(int);
             bool getRoom(int, Room**);
             bool addReservation(string, string, int, bool, Date&, int);
-            void printRooms();
+            void print();
             void printReservations();
     };
 

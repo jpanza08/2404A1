@@ -72,7 +72,7 @@ void Date::incDate(){
 }
 
 void Date::print(){
-	cout<<this->toString();
+	cout<<this->toString()<<endl;
 }
 
 int Date::getMaxDay(){
@@ -95,29 +95,31 @@ int Date::monthToDays(){
 bool Date::equals(Date& d){ return d.day == this->day && d.month == this->month && d.year == this->year;}
 
 bool Date::lessThan(Date& d){
-	if(d.year < this->year){
-		return false;
-	}else if(d.year > this->year){
+	// if(equals(d)){return false;}
+
+	if(year < d.year){
 		return true;
-	}else{
-		if(d.month < this->month){
-			return false;
-		}else if(d.month > this->month){
+	}else{ //year is the same
+		if(month < d.month){
 			return true;
-		}else{
-			if(d.day <= this->day){
-				return false;
-			}else if(d.day > this->day){
+		}else{ //Year and month are the same
+			if(day < d.day){
+				// cout<<"Here"<<endl;
 				return true;
+			}else{
+				return false;
 			}
 		}
 	}
+
+
 	
 }
 
 void Date::addDays(int days){
 	for(int i = 0; i < days; ++i){
 		this->incDate();
+		return;
 	}
 
 }
