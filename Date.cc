@@ -99,10 +99,10 @@ bool Date::lessThan(Date& d){
 
 	if(year < d.year){
 		return true;
-	}else{ //year is the same
+	}else if(year == d.year){ //year is the same
 		if(month < d.month){
 			return true;
-		}else{ //Year and month are the same
+		}else if(month == d.month){ //Year and month are the same
 			if(day < d.day){
 				// cout<<"Here"<<endl;
 				return true;
@@ -112,14 +112,13 @@ bool Date::lessThan(Date& d){
 		}
 	}
 
-
+	return false;
 	
 }
 
 void Date::addDays(int days){
 	for(int i = 0; i < days; ++i){
 		this->incDate();
-		return;
 	}
-
+	return;
 }

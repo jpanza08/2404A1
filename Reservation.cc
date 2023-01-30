@@ -13,16 +13,23 @@ Date& Reservation::getDate(){return this->checkIn;}
 bool Reservation::overlaps(Reservation& r){
     //If start2 < end1 they overlap
     //If start1 < end2 they overlap
-    Date end1 = checkIn;
-    end1.addDays(r.length);
-    Date end2 = r.checkIn;
-    end2.addDays(r.length);
-    if(checkIn.lessThan(end2))
-        return true;
-    if(checkIn.lessThan(end1))
-        return true;
-    return false;
+    Date end = checkIn;
+    end.addDays(length);
+    Date rend = r.checkIn;
+    rend.addDays(r.length);
+
+    if(end.equals(r.checkIn) || rend.equals(checkIn))
+        return false;
+
+    if(rend.lessThan(checkIn)){
+        return false;
+    }
+    if(end.lessThan(r.checkIn)){
+        return false;
+    }
+    return true;
 }
+
 
 bool Reservation::lessThan(Reservation& r){
     if(this->lessThan(r.getDate())){

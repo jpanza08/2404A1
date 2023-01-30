@@ -79,6 +79,7 @@ bool Hotel::addRoom(int roomNumber, string bedType, int capacity, bool fr){
 bool Hotel::deleteRoom(int roomNumber){
     int removal = this->findRoom(roomNumber);
     if(removal != -1){
+        //TODO: Need a destructor here
         this->shift(removal);
         this->size--;
     }
@@ -93,21 +94,33 @@ bool Hotel::getRoom(int roomNumber, Room** room){
     return false;
 }
 bool Hotel::addReservation(string customer, string bedType, int capacity, bool fr, Date& date, int duration){
-    for(int i = 0; i <= size; ++i){
-       if(this->rooms[i]->isMatch(bedType, capacity, fr)){
-        //Need to check overlaps, check every reso in the room
-            Reservation *r = new Reservation(bedType, date, duration);
-            Room *tempRoom = rooms[i];
-            // Reservation* reservations[MAX_RES] = tempRoom->getResos();
-            for(int j = 0; j < tempRoom->getSize(); ++i){
-                 //TODO: Reservation pointer?
-            }
-       }
+    Room* addRoom;
+    bool match = false;
+    for(int i = 0; i < size; ++i){
+        if(rooms[i]->isMatch(bedType, capacity, fr)){
+            addRoom = rooms[i];
+            match = true;
+            break;
+        }
     }
 
-    return false;
+    if(!match){
+        return false;
+    }
+
+    if(addRoom->addReservation(customer, date, duration)){
+        return true;
+    }else{
+        return false;
+    }
 
 }
 
 void Hotel::print(){for(int i = 0; i <= this->size; ++i){ this->rooms[i]->print();}}
-void Hotel::printReservations(){}
+
+void Hotel::printReservations(){
+    for(int i = 0; i < size; ++i){
+        rooms[i]->printReservations();
+    }
+
+}
